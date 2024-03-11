@@ -15,6 +15,7 @@ It is important to decide the priority of key features as it will help in quickl
 ## High Priority Features for Bus Operators
 - **Operators Registration**: Operators should be able to register in the application.
 - **Operators Login**: Operators should be able to login to the application.
+- **Operators Details**: Operators should be able to store personal information.
 - **Listing of Bus Services**: Operators should be able to easily list their bus services on the platform, including routes, schedules, and pricing.
 - **Delisting Bus Services**: Operators should be able to remove their bus services from platform.
 - **Modify Bus Services**: Operators should be able to modify details like driver, route and so on.
