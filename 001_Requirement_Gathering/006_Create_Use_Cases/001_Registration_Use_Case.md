@@ -15,7 +15,7 @@ This use case starts when the user selects to register to the system and ends wh
 ## 4. Basic Flow
 1. User select to register to system.
 2. The system presents a registration form.
-3. The user provides necessary information such as name, mobile number, email, password.
+3. The user provides necessary information such as firstname, lastname, mobile number, email, password.
 4. The user submits the registration form.
 5. The system validates all fields.
 6. The system displays registration successful message and link for login page.
@@ -34,5 +34,3 @@ This use case starts when the user selects to register to the system and ends wh
 
 ## 6. Postcondition
 The user will get registered in the application and now can move to the login.
-
-

@@ -26,10 +26,12 @@ What is functional requirements??
 ## 8. Capture non-functional requirements
 Identify and document any performance, security and usability requirements. These requirements define how the application should behave beyond its core functionality.
 
-## 9. Document user stories
+## 9. Document use cases
+
+## 10. Document user stories
 Write down user stories that describe the desired behavior of the application from the perspective of the end-users. User stories help capture the functionality and user experience requirements.
 
-## 10. Define acceptance criteria
+## 11. Define acceptance criteria
 For each user story, specify the criteria that need to be met in order to consider the story as completed. This helps ensure that the application meets the desired quality and functionality.
 
 
