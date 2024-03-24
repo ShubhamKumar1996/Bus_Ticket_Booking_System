@@ -7,7 +7,7 @@ Registration low level design helps us to understand detailed flow of how user w
 3. User will fill in details field and press submit button. That will be send a post request to system with details filled in the fields.
 4. System will validate information provided by user
     - First name validation
-        - Name length should be between 3 to 50 characters.
+        - Name length should be between 3 to 10 characters.
         - Special characters are not allowed.
     - Last name validation (same as first name validation)
     - email validation
