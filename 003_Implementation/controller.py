@@ -2,7 +2,7 @@ from fastapi import Response, status
 import re
 from argon2 import PasswordHasher
 
-import db_operations as db_ops
+from db_operations import DbConnector
 from model import User
 
 def email_exists(cursor, email):
@@ -47,12 +47,15 @@ def register_user_controller(user: User, response: Response):
         response.status_code = status.HTTP_400_BAD_REQUEST
         response.body = response.render('Invalid password format.')
         return response
+    
+    # Create instance of DB Connector
+    db_connector = DbConnector()
 
     # DB connections
-    conn = db_ops.db_connect()
+    conn = db_connector.create_connection()
 
     # Verify DB Connection
-    if not db_ops.verify_db_connection(conn):
+    if not db_connector.verify_connection():
         response.status_code = status.HTTP_503_SERVICE_UNAVAILABLE
         response.body = response.render("Database connection error.")
         return response
@@ -81,7 +84,7 @@ def register_user_controller(user: User, response: Response):
         message = f"User with id={cursor.lastrowid} created."
 
     # Close DB connections
-    db_ops.close_db_connection(conn)
+    db_connector.close_connection()
     return {"message": message}
 
 
@@ -90,11 +93,14 @@ def get_users_controller(response: Response):
     
     users = []
 
+    # Create instance of DB Connector
+    db_connector = DbConnector()
+
     # Connect to DB
-    conn = db_ops.db_connect()
+    conn = db_connector.create_connection()
     
     # Verify DB Connection    
-    if not db_ops.verify_db_connection(conn):
+    if not db_connector.verify_connection():
         response.status_code = status.HTTP_503_SERVICE_UNAVAILABLE
         response.body = response.render("Database connection error.")
         return response
@@ -106,7 +112,7 @@ def get_users_controller(response: Response):
         users = cursor.fetchall()
     
     # Close DB connection
-    db_ops.close_db_connection(conn)
+    db_connector.close_connection()
 
     # Return the list of users
     return  {"users": users}
