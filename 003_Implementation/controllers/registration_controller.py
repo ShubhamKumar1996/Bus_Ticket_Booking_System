@@ -3,7 +3,7 @@ import re
 from argon2 import PasswordHasher
 
 from db_operations import DbConnector
-from model import User
+from models import User
 
 def email_exists(cursor, email):
     '''Returns True if the given email already exists in the database else False'''
@@ -34,7 +34,7 @@ def validate_password(password):
     else:
         return False
 
-def register_user_controller(user: User, response: Response):
+def register_user(user: User, response: Response):
     # Unpacking user details
     fname, lname, email, password, mobile = user.__dict__.values()
 
@@ -86,33 +86,3 @@ def register_user_controller(user: User, response: Response):
     # Close DB connections
     db_connector.close_connection()
     return {"message": message}
-
-
-def get_users_controller(response: Response):
-    '''Retrieve all user records'''
-    
-    users = []
-
-    # Create instance of DB Connector
-    db_connector = DbConnector()
-
-    # Connect to DB
-    conn = db_connector.create_connection()
-    
-    # Verify DB Connection    
-    if not db_connector.verify_connection():
-        response.status_code = status.HTTP_503_SERVICE_UNAVAILABLE
-        response.body = response.render("Database connection error.")
-        return response
-    
-    # Fetch existing users from DB
-    with conn.cursor() as cursor:
-        query = "SELECT * FROM users order by user_id desc"
-        cursor.execute(query)
-        users = cursor.fetchall()
-    
-    # Close DB connection
-    db_connector.close_connection()
-
-    # Return the list of users
-    return  {"users": users}
